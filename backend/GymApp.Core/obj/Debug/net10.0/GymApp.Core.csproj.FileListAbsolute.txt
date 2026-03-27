@@ -31,3 +31,4 @@ C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.Core\obj\Debug\net10.0\GymA
 C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.Core\obj\Debug\net10.0\refint\GymApp.Core.dll
 C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.Core\obj\Debug\net10.0\GymApp.Core.pdb
 C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.Core\obj\Debug\net10.0\ref\GymApp.Core.dll
+C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.Core\obj\Debug\net10.0\GymApp.Core.sourcelink.json

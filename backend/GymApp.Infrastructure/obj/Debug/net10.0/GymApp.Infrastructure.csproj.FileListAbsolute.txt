@@ -49,3 +49,4 @@ C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.Infrastructure\obj\Debug\ne
 C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.Infrastructure\obj\Debug\net10.0\GymApp.Infrastructure.pdb
 C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.Infrastructure\obj\Debug\net10.0\GymApp.Infrastructure.genruntimeconfig.cache
 C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.Infrastructure\obj\Debug\net10.0\ref\GymApp.Infrastructure.dll
+C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.Infrastructure\obj\Debug\net10.0\GymApp.Infrastructure.sourcelink.json

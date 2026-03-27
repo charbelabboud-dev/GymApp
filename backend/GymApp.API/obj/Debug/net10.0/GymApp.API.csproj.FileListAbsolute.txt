@@ -499,3 +499,4 @@ C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.API\obj\Debug\net10.0\refin
 C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.API\obj\Debug\net10.0\GymApp.API.pdb
 C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.API\obj\Debug\net10.0\GymApp.API.genruntimeconfig.cache
 C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.API\obj\Debug\net10.0\ref\GymApp.API.dll
+C:\Users\user\OneDrive\Desktop\GymApp\backend\GymApp.API\obj\Debug\net10.0\GymApp.API.sourcelink.json
