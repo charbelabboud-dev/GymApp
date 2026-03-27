@@ -1,0 +1,7 @@
+Concept	Purpose
+DTO	Shape of data for API (what frontend sees)
+Entity	Shape of data in database (what SQL stores)
+Interface	Contract - defines what methods a service must have
+Service	Contains business logic (queries database, transforms data)
+Controller	Handles HTTP requests, calls services, returns responses
+Dependency Injection	Automatically gives services to controllers
