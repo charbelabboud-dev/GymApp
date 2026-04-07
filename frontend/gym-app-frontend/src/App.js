@@ -18,6 +18,12 @@ import MyClientsPage from './pages/MyClientsPage.jsx';
 import CreateWorkoutPlanPage from './pages/CreateWorkoutPlan.jsx';
 import ClientProgressPage from './pages/ClientProgressPage.jsx';
 import MyReviewsPage from './pages/MyReviewsPage.jsx';
+import DietitiansClientsPage from './pages/DietitiansClientsPage.jsx'
+import DietitianConsultationsPage from './pages/DietitiansConsultationPage.jsx';
+import CreateDietPlanPage from './pages/CreateDietPlanPage';
+import DietitianProgressPage from './pages/DietitianProgressPage';
+import GoalsPage from './pages/GoalsPage';
+import CoachRankingsPage from './pages/CoachRankingPage.jsx';
 function ProtectedRoute({ children }) {
     const { user } = useAuth();
     return user ? children : <Navigate to="/login" />;
@@ -121,6 +127,43 @@ function AppLayout() {
                             <MyReviewsPage />
                         </ProtectedRoute>
                     } />
+                    {/* Dietitian Routes */}
+<Route path="/dietitian-clients" element={
+    <ProtectedRoute>
+        <DietitiansClientsPage />
+    </ProtectedRoute>
+} />
+<Route path="/dietitian-consultations" element={
+    <ProtectedRoute>
+        <DietitianConsultationsPage />
+    </ProtectedRoute>
+} />
+<Route path="/create-diet-plan" element={
+    <ProtectedRoute>
+        <CreateDietPlanPage />
+    </ProtectedRoute>
+} />
+<Route path="/dietitian-progress/:clientCode" element={
+    <ProtectedRoute>
+        <ClientProgressPage />
+    </ProtectedRoute>
+} />
+<Route path="/dietitian-progress/:clientCode" element={
+    <ProtectedRoute>
+        <DietitianProgressPage />
+    </ProtectedRoute>
+} />
+<Route path="/goals" element={
+    <ProtectedRoute>
+        <GoalsPage />
+    </ProtectedRoute>
+} />
+
+<Route path="/coach-rankings" element={
+    <ProtectedRoute>
+        <CoachRankingsPage />
+    </ProtectedRoute>
+} />
                 </Routes>
             </div>
         </>

@@ -34,6 +34,7 @@ namespace GymApp.Infrastructure.Data
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<ProgressEntry> ProgressEntries { get; set; }
+        public DbSet<ClientGoal> ClientGoals { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -52,6 +53,16 @@ namespace GymApp.Infrastructure.Data
                 entity.Property(e => e.UserRole).IsRequired().HasMaxLength(20);
                 entity.Property(e => e.CreatedDate).HasDefaultValueSql("GETDATE()");
             });
+            modelBuilder.Entity<ClientGoal>(entity =>
+{
+    entity.ToTable("ClientGoals");
+    entity.HasKey(e => e.Id);
+    
+    entity.HasOne(e => e.Client)
+        .WithMany()
+        .HasForeignKey(e => e.ClientCode)
+        .OnDelete(DeleteBehavior.Restrict);
+});
 
             // ========================================
             // CLIENT TABLE
@@ -80,6 +91,11 @@ namespace GymApp.Infrastructure.Data
                 entity.HasOne(e => e.Membership)
                     .WithMany(m => m.Clients)
                     .HasForeignKey(e => e.ClMembershipId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(e => e.Dietitian)
+                    .WithMany(d => d.Clients)
+                    .HasForeignKey(e => e.DietitianId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 

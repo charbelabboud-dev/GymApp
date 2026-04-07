@@ -16,6 +16,8 @@ namespace GymApp.Core.Entities
         public bool ClStatus { get; set; }
         public string? ClCoachId { get; set; }
         public int? ClMembershipId { get; set; }
+        public string? DietitianId { get; set; } 
+        public virtual Dietitian? Dietitian { get; set; } 
         public bool IsDeleted { get; set; }
         // Navigation properties
         public virtual ICollection<ProgressEntry>? ProgressEntries { get; set; }

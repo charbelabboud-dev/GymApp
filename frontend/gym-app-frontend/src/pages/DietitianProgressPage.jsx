@@ -4,26 +4,28 @@ import { useAuth } from '../contexts/AuthContext';
 import progressService from '../services/ProgressService';
 import clientService from '../services/clientService';
 import PageHeader from '../Components/common/PageHeader';
-import Card from '../Components/common/Card';
 import Button from '../Components/common/Button';
 import Loading from '../Components/common/Loading';
 import EmptyState from '../Components/common/EmptyState';
 import Alert from '../Components/common/Alert';
 import '../Styles/global.css';
 
-function ClientProgressPage() {
+function DietitianProgressPage() {
     const { clientCode } = useParams();
     const { user } = useAuth();
     const navigate = useNavigate();
+
+
+        console.log('User:', user);  // ← Add this
+    console.log('ClientCode from URL:', clientCode);  // ← Add this
+    console.log('DietitianCode:', user?.dietitianCode);  // ← Add this
     
     const [progress, setProgress] = useState([]);
     const [client, setClient] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
-    // Determine user role and back path
-    const userRole = user?.role;
-    const backPath = userRole === 'Dietitian' ? '/dietitian-clients' : '/my-clients';
+    const dietitianCode = user?.dietitianCode;
 
     useEffect(() => {
         if (clientCode) {
@@ -60,20 +62,17 @@ function ClientProgressPage() {
         });
     };
 
-    const formatWeight = (weight) => {
-        if (!weight) return '-';
-        return `${weight} kg`;
-    };
-
-    const formatBodyFat = (value) => {
-        if (!value) return '-';
-        return `${value}%`;
-    };
-
-    const formatMeasurement = (value) => {
-        if (!value) return '-';
-        return `${value} cm`;
-    };
+    if (!dietitianCode) {
+        return (
+            <div className="page-container">
+                <div className="page-content">
+                    <PageHeader title="Client Progress" />
+                    <Alert type="error" message="Unable to find your dietitian profile." />
+                    <Button onClick={() => navigate('/dietitian-clients')} variant="primary">Back to Clients</Button>
+                </div>
+            </div>
+        );
+    }
 
     if (!clientCode) {
         return (
@@ -81,7 +80,7 @@ function ClientProgressPage() {
                 <div className="page-content">
                     <PageHeader title="Client Progress" />
                     <Alert type="error" message="No client selected." />
-                    <Button onClick={() => navigate(backPath)} variant="primary">Back to Clients</Button>
+                    <Button onClick={() => navigate('/dietitian-clients')} variant="primary">Back to Clients</Button>
                 </div>
             </div>
         );
@@ -102,36 +101,13 @@ function ClientProgressPage() {
                         title="No progress entries"
                         message="This client hasn't added any progress entries yet."
                         action={
-                            <Button onClick={() => navigate(backPath)} variant="primary">
+                            <Button onClick={() => navigate('/dietitian-clients')} variant="primary">
                                 Back to Clients
                             </Button>
                         }
                     />
                 ) : (
                     <div>
-                        {/* Summary Stats */}
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px', marginBottom: '25px' }}>
-                            <Card>
-                                <h4>Latest Weight</h4>
-                                <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#2c3e50' }}>
-                                    {progress[0]?.weight ? `${progress[0].weight} kg` : '-'}
-                                </p>
-                            </Card>
-                            <Card>
-                                <h4>Latest Body Fat</h4>
-                                <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#2c3e50' }}>
-                                    {progress[0]?.bodyFatPercentage ? `${progress[0].bodyFatPercentage}%` : '-'}
-                                </p>
-                            </Card>
-                            <Card>
-                                <h4>Total Entries</h4>
-                                <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#2c3e50' }}>
-                                    {progress.length}
-                                </p>
-                            </Card>
-                        </div>
-
-                        {/* Progress History Table */}
                         <div className="table-container">
                             <table className="table">
                                 <thead>
@@ -148,10 +124,10 @@ function ClientProgressPage() {
                                     {progress.map((entry) => (
                                         <tr key={entry.id}>
                                             <td>{formatDate(entry.entryDate)}</td>
-                                            <td>{formatWeight(entry.weight)}</td>
-                                            <td>{formatBodyFat(entry.bodyFatPercentage)}</td>
-                                            <td>{formatMeasurement(entry.chest)}</td>
-                                            <td>{formatMeasurement(entry.waist)}</td>
+                                            <td>{entry.weight || '-'}</td>
+                                            <td>{entry.bodyFatPercentage || '-'}</td>
+                                            <td>{entry.chest || '-'}</td>
+                                            <td>{entry.waist || '-'}</td>
                                             <td>{entry.notes || '-'}</td>
                                         </tr>
                                     ))}
@@ -162,7 +138,7 @@ function ClientProgressPage() {
                 )}
                 
                 <div style={{ marginTop: '20px' }}>
-                    <Button onClick={() => navigate(backPath)} variant="secondary">
+                    <Button onClick={() => navigate('/dietitian-clients')} variant="secondary">
                         ← Back to Clients
                     </Button>
                 </div>
@@ -171,4 +147,4 @@ function ClientProgressPage() {
     );
 }
 
-export default ClientProgressPage;
+export default DietitianProgressPage;

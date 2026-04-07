@@ -17,6 +17,30 @@ namespace GymApp.Infrastructure.Services
         {
             _context = context;
         }
+        public async Task<List<CoachDto>> GetTopRatedCoachesAsync(int limit)
+{
+    var coaches = await _context.Coaches
+        .Where(c => !c.IsDeleted && c.CoStatus == true)
+        .Include(c => c.User)
+        .Include(c => c.Reviews)
+        .OrderByDescending(c => c.Rating)
+        .ThenBy(c => c.CoFname)
+        .Take(limit)
+        .ToListAsync();
+
+    var coachDtos = coaches.Select(c => new CoachDto
+    {
+        CoCode = c.CoCode,
+        FullName = $"{c.CoFname} {c.CoLname}",
+        Phone = c.CoPhone,
+        Email = c.CoEmail,
+        Specialty = c.CoSpecialty ?? "General",
+        Address = c.CoAddress,
+        Rating = c.Rating ?? 0
+    }).ToList();
+
+    return coachDtos;
+}
 
         public async Task<List<CoachDto>> GetAllCoachesAsync()
         {

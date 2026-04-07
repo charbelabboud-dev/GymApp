@@ -18,6 +18,27 @@ namespace GymApp.Infrastructure.Services
             _context = context;
         }
 
+public async Task<List<ClientDto>> GetClientsByDietitianAsync(string dietitianCode)
+{
+    var clients = await _context.Clients
+        .Where(c => c.DietitianId == dietitianCode && !c.IsDeleted)
+        .Include(c => c.User)
+        .Include(c => c.Sessions)
+        .ToListAsync();
+
+    var clientDtos = clients.Select(c => new ClientDto
+    {
+        ClCode = c.ClCode,
+        FullName = $"{c.ClFname} {c.ClLname}",
+        Email = c.User?.UserEmail ?? "",
+        Phone = c.ClPhone,
+        RegisterDate = c.ClRegisterDate,
+        TotalSessions = c.Sessions?.Count ?? 0,
+        CompletedSessions = c.Sessions?.Count(s => s.SesStatus == "Completed") ?? 0
+    }).ToList();
+
+    return clientDtos;
+}
 public async Task<ClientDto> GetClientDetailsAsync(string clientCode)
 {
     var client = await _context.Clients

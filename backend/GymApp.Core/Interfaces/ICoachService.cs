@@ -8,6 +8,7 @@ namespace GymApp.Core.Interfaces
     {
         Task<List<CoachDto>> GetAllCoachesAsync();
         
+        Task<List<CoachDto>> GetTopRatedCoachesAsync(int limit);
         Task<List<CoachDto>> GetCoachesBySpecialtyAsync(string specialty);
     }
 }

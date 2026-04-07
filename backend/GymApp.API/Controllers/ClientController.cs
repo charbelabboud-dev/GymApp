@@ -30,6 +30,19 @@ public async Task<IActionResult> GetClientDetails(string clientCode)
         return BadRequest(new { success = false, message = ex.Message });
     }
 }
+[HttpGet("dietitian/{dietitianCode}")]
+public async Task<IActionResult> GetClientsByDietitian(string dietitianCode)
+{
+    try
+    {
+        var clients = await _clientService.GetClientsByDietitianAsync(dietitianCode);
+        return Ok(new { success = true, data = clients });
+    }
+    catch (System.Exception ex)
+    {
+        return BadRequest(new { success = false, message = ex.Message });
+    }
+}
         [HttpGet("coach/{coachCode}")]
         public async Task<IActionResult> GetClientsByCoach(string coachCode)
         {

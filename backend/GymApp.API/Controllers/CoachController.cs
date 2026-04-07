@@ -17,6 +17,19 @@ namespace GymApp.API.Controllers
             _coachService = coachService;
         }
 
+[HttpGet("top-rated")]
+public async Task<IActionResult> GetTopRatedCoaches([FromQuery] int limit = 10)
+{
+    try
+    {
+        var coaches = await _coachService.GetTopRatedCoachesAsync(limit);
+        return Ok(new { success = true, data = coaches });
+    }
+    catch (System.Exception ex)
+    {
+        return BadRequest(new { success = false, message = ex.Message });
+    }
+}
         [HttpGet]
         public async Task<IActionResult> GetAllCoaches()
         {

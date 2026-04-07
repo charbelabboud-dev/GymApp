@@ -72,7 +72,9 @@ function Dashboard() {
             { icon: '💪', title: 'Workout Plans', desc: 'Follow your personalized workouts', path: '/workout-plans' },
             { icon: '🥗', title: 'Diet Plans', desc: 'Track your nutrition journey', path: '/diet-plans' },
             { icon: '📊', title: 'Track Progress', desc: 'Monitor your fitness growth', path: '/progress' },
-            { icon: '🔔', title: 'Notifications', desc: 'View your updates', path: '/notifications' }
+            { icon: '🔔', title: 'Notifications', desc: 'View your updates', path: '/notifications' },
+            { icon: '🎯', title: 'My Goals', desc: 'Set and track fitness goals', path: '/goals' },
+            { icon: '🏆', title: 'Top Coaches', desc: 'See the best rated coaches', path: '/coach-rankings' }
         ],
 coach: [
     { icon: '📅', title: 'My Sessions', desc: 'View and manage sessions', path: '/coach-sessions' },
@@ -81,12 +83,12 @@ coach: [
     { icon: '📊', title: 'Client Progress', desc: 'Track client achievements', path: '/my-clients' },  
 { icon: '⭐', title: 'My Reviews', desc: 'See what clients say', path: '/my-reviews' },
 ],
-        dietitian: [
-            { icon: '👥', title: 'My Clients', desc: 'Manage your nutrition clients', path: '/my-clients' },
-            { icon: '📅', title: 'Consultations', desc: 'Review consultation requests', path: '/consultation-requests' },
-            { icon: '📝', title: 'Create Diet Plan', desc: 'Design meal programs', path: '/create-diet-plan' },
-            { icon: '📊', title: 'Client Progress', desc: 'Track nutrition goals', path: '/client-progress' }
-        ]
+dietitian: [
+    { icon: '👥', title: 'My Clients', desc: 'Manage your nutrition clients', path: '/dietitian-clients' },
+    { icon: '📅', title: 'Consultations', desc: 'View consultation requests', path: '/dietitian-consultations' },
+    { icon: '📝', title: 'Create Diet Plan', desc: 'Design meal programs', path: '/create-diet-plan' },
+    { icon: '📊', title: 'Client Progress', desc: 'Track nutrition goals', path: '/dietitian-clients' } 
+],
     };
 
     const currentFeatures = features[user?.role?.toLowerCase()] || features.client;

@@ -8,5 +8,6 @@ namespace GymApp.Core.Interfaces
     {
         Task<List<ClientDto>> GetClientsByCoachAsync(string coachCode);
         Task<ClientDto> GetClientDetailsAsync(string clientCode);
+        Task<List<ClientDto>> GetClientsByDietitianAsync(string dietitianCode); 
     }
 }

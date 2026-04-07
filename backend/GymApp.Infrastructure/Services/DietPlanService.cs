@@ -19,6 +19,7 @@ namespace GymApp.Infrastructure.Services
             _context = context;
         }
 
+
         public async Task<DietPlanDto> CreateDietPlanAsync(CreateDietPlanDto dto)
         {
             // Check if client exists

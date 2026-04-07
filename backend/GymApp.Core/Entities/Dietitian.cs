@@ -17,5 +17,6 @@ namespace GymApp.Core.Entities
         // Navigation properties
         public virtual User? User { get; set; }
         public virtual ICollection<DietPlan>? DietPlans { get; set; }
-    }
+                public virtual ICollection<Client>? Clients { get; set; }
+        }
 }

@@ -25,6 +25,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IGoalService, GoalService>();
 
 // Database
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

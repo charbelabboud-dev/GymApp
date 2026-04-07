@@ -23,6 +23,15 @@ const dietPlanService = {
         }
     },
 
+    createDietPlan: async (planData) => {
+    try {
+        const response = await api.post('/DietPlan', planData);
+        return response.data;
+    } catch (error) {
+        console.error('Error creating diet plan:', error);
+        throw error;
+    }
+},
     // Get a single plan by ID
     getPlanById: async (planId) => {
         try {

@@ -23,6 +23,15 @@ const clientService = {
         }
     },
 
+    getDietitianClients: async (dietitianCode) => {
+    try {
+        const response = await api.get(`/Clients/dietitian/${dietitianCode}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching dietitian clients:', error);
+        throw error;
+    }
+},
     // Get all clients (for dropdown)
     getAllClients: async () => {
         try {
