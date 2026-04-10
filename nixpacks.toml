@@ -1,8 +1,11 @@
 [phases.setup]
 nixPkgs = ["dotnet-sdk_10"]
 
+[phases.install]
+cmds = ["dotnet restore backend/GymApp.API/GymApp.API.csproj"]
+
 [phases.build]
-cmds = ["dotnet publish backend/GymApp.API/GymApp.API.csproj -c Release -o out"]
+cmds = ["dotnet publish backend/GymApp.API/GymApp.API.csproj -c Release -o out --no-restore"]
 
 [start]
 cmd = "dotnet out/GymApp.API.dll"
