@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -15,14 +16,14 @@ namespace GymApp.Infrastructure.Migrations
                 name: "MembershipPlans",
                 columns: table => new
                 {
-                    MemId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MemName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    MemPrice = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    MemDurationDays = table.Column<int>(type: "int", nullable: false),
-                    MemDescription = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    MemStatus = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    MemId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    MemName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    MemPrice = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
+                    MemDurationDays = table.Column<int>(type: "integer", nullable: false),
+                    MemDescription = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
+                    MemStatus = table.Column<bool>(type: "boolean", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,14 +34,14 @@ namespace GymApp.Infrastructure.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UserPassword = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    UserRole = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    UserStatus = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    UserId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserEmail = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    UserPassword = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    UserRole = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    UserStatus = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,19 +52,19 @@ namespace GymApp.Infrastructure.Migrations
                 name: "Coaches",
                 columns: table => new
                 {
-                    CoCode = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    CoFname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CoLname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CoBirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CoPhone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    CoEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CoAddress = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    CoHireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CoSpecialty = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    CoStatus = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    Rating = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    CoCode = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    CoFname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    CoLname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    CoBirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CoPhone = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
+                    CoEmail = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    CoAddress = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    CoHireDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CoSpecialty = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    CoStatus = table.Column<bool>(type: "boolean", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    Rating = table.Column<decimal>(type: "numeric", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -80,14 +81,14 @@ namespace GymApp.Infrastructure.Migrations
                 name: "Dietitians",
                 columns: table => new
                 {
-                    DietCode = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    DietFname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    DietLname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    DietEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    DietPhone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    DietStatus = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    DietCode = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    DietFname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    DietLname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    DietEmail = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    DietPhone = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
+                    DietStatus = table.Column<bool>(type: "boolean", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,15 +105,15 @@ namespace GymApp.Infrastructure.Migrations
                 name: "Notifications",
                 columns: table => new
                 {
-                    NotId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
-                    IsRead = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    NotId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Message = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Type = table.Column<string>(type: "text", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    IsRead = table.Column<bool>(type: "boolean", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -129,19 +130,19 @@ namespace GymApp.Infrastructure.Migrations
                 name: "Clients",
                 columns: table => new
                 {
-                    ClCode = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    ClFname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    ClLname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    ClBirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ClPhone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    ClAddress = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ClRegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
-                    ClStatus = table.Column<bool>(type: "bit", nullable: false),
-                    ClCoachId = table.Column<string>(type: "nvarchar(5)", nullable: true),
-                    ClMembershipId = table.Column<int>(type: "int", nullable: true),
-                    DietitianId = table.Column<string>(type: "nvarchar(5)", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    ClCode = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    ClFname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    ClLname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    ClBirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ClPhone = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
+                    ClAddress = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    ClRegisterDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    ClStatus = table.Column<bool>(type: "boolean", nullable: false),
+                    ClCoachId = table.Column<string>(type: "character varying(5)", nullable: true),
+                    ClMembershipId = table.Column<int>(type: "integer", nullable: true),
+                    DietitianId = table.Column<string>(type: "character varying(5)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -177,12 +178,12 @@ namespace GymApp.Infrastructure.Migrations
                 name: "Attendances",
                 columns: table => new
                 {
-                    AttId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClCode = table.Column<string>(type: "nvarchar(5)", nullable: false),
-                    CheckInTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
-                    CheckOutTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    AttId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ClCode = table.Column<string>(type: "character varying(5)", nullable: false),
+                    CheckInTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    CheckOutTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -199,16 +200,16 @@ namespace GymApp.Infrastructure.Migrations
                 name: "ClientGoals",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientCode = table.Column<string>(type: "nvarchar(5)", nullable: false),
-                    GoalType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TargetValue = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CurrentValue = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TargetDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsCompleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ClientCode = table.Column<string>(type: "character varying(5)", nullable: false),
+                    GoalType = table.Column<string>(type: "text", nullable: false),
+                    TargetValue = table.Column<decimal>(type: "numeric", nullable: false),
+                    CurrentValue = table.Column<decimal>(type: "numeric", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    TargetDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    IsCompleted = table.Column<bool>(type: "boolean", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -225,14 +226,14 @@ namespace GymApp.Infrastructure.Migrations
                 name: "ClientMemberships",
                 columns: table => new
                 {
-                    CmId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClCode = table.Column<string>(type: "nvarchar(5)", nullable: false),
-                    MemId = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    CmId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ClCode = table.Column<string>(type: "character varying(5)", nullable: false),
+                    MemId = table.Column<int>(type: "integer", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Status = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -255,14 +256,14 @@ namespace GymApp.Infrastructure.Migrations
                 name: "DietPlans",
                 columns: table => new
                 {
-                    DietId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClCode = table.Column<string>(type: "nvarchar(5)", nullable: false),
-                    DietitianId = table.Column<string>(type: "nvarchar(5)", nullable: false),
-                    DietStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DietEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DietDescription = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    DietId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ClCode = table.Column<string>(type: "character varying(5)", nullable: false),
+                    DietitianId = table.Column<string>(type: "character varying(5)", nullable: false),
+                    DietStartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DietEndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DietDescription = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -285,15 +286,15 @@ namespace GymApp.Infrastructure.Migrations
                 name: "Payments",
                 columns: table => new
                 {
-                    PayId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClCode = table.Column<string>(type: "nvarchar(5)", nullable: false),
-                    MemId = table.Column<int>(type: "int", nullable: false),
-                    PayAmount = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
-                    PayMethod = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    PayDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
-                    PayStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    PayId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ClCode = table.Column<string>(type: "character varying(5)", nullable: false),
+                    MemId = table.Column<int>(type: "integer", nullable: false),
+                    PayAmount = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
+                    PayMethod = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    PayDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    PayStatus = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -316,16 +317,16 @@ namespace GymApp.Infrastructure.Migrations
                 name: "ProgressEntries",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientId = table.Column<int>(type: "int", nullable: false),
-                    Weight = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    BodyFatPercentage = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Chest = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Waist = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EntryDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ClientId = table.Column<int>(type: "integer", nullable: false),
+                    Weight = table.Column<decimal>(type: "numeric", nullable: true),
+                    BodyFatPercentage = table.Column<decimal>(type: "numeric", nullable: true),
+                    Chest = table.Column<decimal>(type: "numeric", nullable: true),
+                    Waist = table.Column<decimal>(type: "numeric", nullable: true),
+                    Notes = table.Column<string>(type: "text", nullable: true),
+                    EntryDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -342,16 +343,16 @@ namespace GymApp.Infrastructure.Migrations
                 name: "Sessions",
                 columns: table => new
                 {
-                    SesId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SesClCode = table.Column<string>(type: "nvarchar(5)", nullable: false),
-                    SesCoCode = table.Column<string>(type: "nvarchar(5)", nullable: false),
-                    SesType = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    SesDescription = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    SesDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SesDuration = table.Column<int>(type: "int", nullable: false),
-                    SesStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false, defaultValue: "Scheduled"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    SesId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    SesClCode = table.Column<string>(type: "character varying(5)", nullable: false),
+                    SesCoCode = table.Column<string>(type: "character varying(5)", nullable: false),
+                    SesType = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    SesDescription = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    SesDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    SesDuration = table.Column<int>(type: "integer", nullable: false),
+                    SesStatus = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false, defaultValue: "Scheduled"),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -374,14 +375,14 @@ namespace GymApp.Infrastructure.Migrations
                 name: "WorkoutPlans",
                 columns: table => new
                 {
-                    WpId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClCode = table.Column<string>(type: "nvarchar(5)", nullable: false),
-                    CoCode = table.Column<string>(type: "nvarchar(5)", nullable: false),
-                    WpName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    WpStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    WpEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    WpId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ClCode = table.Column<string>(type: "character varying(5)", nullable: false),
+                    CoCode = table.Column<string>(type: "character varying(5)", nullable: false),
+                    WpName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    WpStartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    WpEndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -404,15 +405,15 @@ namespace GymApp.Infrastructure.Migrations
                 name: "Reviews",
                 columns: table => new
                 {
-                    RevId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClCode = table.Column<string>(type: "nvarchar(5)", nullable: false),
-                    CoCode = table.Column<string>(type: "nvarchar(5)", nullable: false),
-                    Rating = table.Column<int>(type: "int", nullable: false),
-                    Comment = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    SessionId = table.Column<int>(type: "int", nullable: true)
+                    RevId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ClCode = table.Column<string>(type: "character varying(5)", nullable: false),
+                    CoCode = table.Column<string>(type: "character varying(5)", nullable: false),
+                    Rating = table.Column<int>(type: "integer", nullable: false),
+                    Comment = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    SessionId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -440,14 +441,14 @@ namespace GymApp.Infrastructure.Migrations
                 name: "WorkoutExercises",
                 columns: table => new
                 {
-                    WeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    WpId = table.Column<int>(type: "int", nullable: false),
-                    ExerciseName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Sets = table.Column<int>(type: "int", nullable: false),
-                    Reps = table.Column<int>(type: "int", nullable: false),
-                    RestSeconds = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    WeId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    WpId = table.Column<int>(type: "integer", nullable: false),
+                    ExerciseName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Sets = table.Column<int>(type: "integer", nullable: false),
+                    Reps = table.Column<int>(type: "integer", nullable: false),
+                    RestSeconds = table.Column<int>(type: "integer", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
