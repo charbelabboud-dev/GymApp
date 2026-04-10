@@ -40,7 +40,7 @@ namespace GymApp.Infrastructure.Migrations
                     UserPassword = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     UserRole = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     UserStatus = table.Column<bool>(type: "boolean", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -56,11 +56,11 @@ namespace GymApp.Infrastructure.Migrations
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     CoFname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     CoLname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    CoBirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CoBirthDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     CoPhone = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
                     CoEmail = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     CoAddress = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    CoHireDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CoHireDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     CoSpecialty = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     CoStatus = table.Column<bool>(type: "boolean", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
@@ -111,7 +111,7 @@ namespace GymApp.Infrastructure.Migrations
                     Title = table.Column<string>(type: "text", nullable: false),
                     Message = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     Type = table.Column<string>(type: "text", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     IsRead = table.Column<bool>(type: "boolean", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
@@ -134,10 +134,10 @@ namespace GymApp.Infrastructure.Migrations
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     ClFname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     ClLname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    ClBirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ClBirthDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     ClPhone = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
                     ClAddress = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    ClRegisterDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    ClRegisterDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     ClStatus = table.Column<bool>(type: "boolean", nullable: false),
                     ClCoachId = table.Column<string>(type: "character varying(5)", nullable: true),
                     ClMembershipId = table.Column<int>(type: "integer", nullable: true),
@@ -181,8 +181,8 @@ namespace GymApp.Infrastructure.Migrations
                     AttId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ClCode = table.Column<string>(type: "character varying(5)", nullable: false),
-                    CheckInTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    CheckOutTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    CheckInTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    CheckOutTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -206,8 +206,8 @@ namespace GymApp.Infrastructure.Migrations
                     GoalType = table.Column<string>(type: "text", nullable: false),
                     TargetValue = table.Column<decimal>(type: "numeric", nullable: false),
                     CurrentValue = table.Column<decimal>(type: "numeric", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    TargetDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    TargetDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     IsCompleted = table.Column<bool>(type: "boolean", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
@@ -230,8 +230,8 @@ namespace GymApp.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ClCode = table.Column<string>(type: "character varying(5)", nullable: false),
                     MemId = table.Column<int>(type: "integer", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Status = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
@@ -260,8 +260,8 @@ namespace GymApp.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ClCode = table.Column<string>(type: "character varying(5)", nullable: false),
                     DietitianId = table.Column<string>(type: "character varying(5)", nullable: false),
-                    DietStartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DietEndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DietStartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DietEndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DietDescription = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
@@ -292,7 +292,7 @@ namespace GymApp.Infrastructure.Migrations
                     MemId = table.Column<int>(type: "integer", nullable: false),
                     PayAmount = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
                     PayMethod = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    PayDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    PayDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     PayStatus = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
@@ -325,7 +325,7 @@ namespace GymApp.Infrastructure.Migrations
                     Chest = table.Column<decimal>(type: "numeric", nullable: true),
                     Waist = table.Column<decimal>(type: "numeric", nullable: true),
                     Notes = table.Column<string>(type: "text", nullable: true),
-                    EntryDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    EntryDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -349,7 +349,7 @@ namespace GymApp.Infrastructure.Migrations
                     SesCoCode = table.Column<string>(type: "character varying(5)", nullable: false),
                     SesType = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     SesDescription = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    SesDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    SesDateTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     SesDuration = table.Column<int>(type: "integer", nullable: false),
                     SesStatus = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false, defaultValue: "Scheduled"),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
@@ -380,8 +380,8 @@ namespace GymApp.Infrastructure.Migrations
                     ClCode = table.Column<string>(type: "character varying(5)", nullable: false),
                     CoCode = table.Column<string>(type: "character varying(5)", nullable: false),
                     WpName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    WpStartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    WpEndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    WpStartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    WpEndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -411,7 +411,7 @@ namespace GymApp.Infrastructure.Migrations
                     CoCode = table.Column<string>(type: "character varying(5)", nullable: false),
                     Rating = table.Column<int>(type: "integer", nullable: false),
                     Comment = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     SessionId = table.Column<int>(type: "integer", nullable: true)
                 },
