@@ -1,7 +1,7 @@
     import axios from "axios";
 
     const api = axios.create({
-        baseURL : "http://localhost:5242/api",
+        baseURL : "https://gymapp-production-27d2.up.railway.app/api",
         headers:{
             'content-type' : 'application/json',
         },
