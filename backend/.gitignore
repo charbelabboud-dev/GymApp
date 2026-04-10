@@ -1,18 +1,21 @@
 # Build output
 bin/
 obj/
-*.dll
-*.exe
-*.pdb
 
-# User-specific files
+# Visual Studio
+.vs/
 *.user
 *.suo
 
-# IDE files
-.vs/
+# Rider / JetBrains
 .idea/
 
 # Logs
-logs/
 *.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# NuGet packages (optional cache)
+*.nupkg
